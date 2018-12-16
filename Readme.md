@@ -45,6 +45,29 @@ firebase init
 => Do you want to install dependencies with npm now? (Type `Y` then press `Enter`)
 ```
 
+## Open VSCode at the root of this project
+
+```
+code .
+– sudo code .
+```
+
+## Update all the firebase tools at the terminal
+
+```
+cd functions
+npm install firebase-admin@latest firebase-functions@latest
+– sudo npm install firebase-admin@latest firebase-functions@latest
+```
+
+**We don't need anything from the node_modules folder as it is handled by npm, so we will add the folder to the .gitignore file.**
+Create the new .gitignore file in the root directory or if it is by default created then add lines to it anywhere and save it.
+
+```
+# Dependency directories
+node_modules/
+```
+
 ## 💰 Donations
 
 This project needs you! If you would like to support this project's further upgradations, the creator of this project or the continuous maintenance of this project, feel free to donate. Your donation is highly appreciated (and I love food, coffee and beer). Thank you!
