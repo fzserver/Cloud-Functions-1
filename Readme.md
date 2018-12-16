@@ -3,15 +3,46 @@ This function fetches the data from cloud firestore & sends the notification usi
 
 ## Requirements for using a Firebase Cloud Function
 
-1. Nodejs
-2. npm
-3. VSCode
-4. Firebase CLI
+* Install node.js => [https://goo.gl/pQGB2Y](https://goo.gl/pQGB2Y)
+```
+brew install node
+node --version
+```
+* npm => Its the node package manager
+```
+npm --version
+```
+* Install Firebase CLI
+```
+npm install -g firebase-tools
+firebase --version
+```
+**Run with sudo if needed**
+```
+sudo npm install -g firebase-tools
+firebase --version
+```
+* Install a code editor (VSCode) => [https://goo.gl/uAAR2o](https://goo.gl/uAAR2o)
 
-## Deploy a Firebase Cloud Function
 
+## Setup a Firebase
+
+**For first time users**
+```
+firebase login
+– sudo firebase login
 ```
 
+## Initialize Firebase Cloud Functions
+
+```
+firebase init
+– sudo firebase init
+=> Choose the Firebase feature you want to use. (For this project select **Functions**)
+=> Select a default Firebase project for this directory. (For this project can create one or use any existing)
+=> What language would you like to use to write Cloud Functions? (For this project select **TypeScript**)
+=> Do you want to use TSLint to catch probable bugs and enforce style? (Type **Y** then press **Enter**)
+=> Do you want to install dependencies with npm now? (Type **Y** then press **Enter**)
 ```
 
 ## 💰 Donations
