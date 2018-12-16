@@ -68,6 +68,11 @@ Create the new .gitignore file in the root directory or if it is by default crea
 node_modules/
 ```
 
+## Setup the Firebase Cloud Firestore
+Add a Collection in Firebase cloud firestore =>
+
+**Will be updated soon.**
+
 ## 💰 Donations
 
 This project needs you! If you would like to support this project's further upgradations, the creator of this project or the continuous maintenance of this project, feel free to donate. Your donation is highly appreciated (and I love food, coffee and beer). Thank you!
