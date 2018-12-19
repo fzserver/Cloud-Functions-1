@@ -1,6 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 admin.initializeApp()
+const fire = admin.firestore();
+const sett = {timestampsInSnapshots: true};
+fire.settings(sett);
 
 // export const getUSServerUpdate = 
 // functions.firestore.document('servers/US').onUpdate(change => {
@@ -70,27 +73,47 @@ admin.initializeApp()
 // })
 
 /* Using of Async, Await in the function */
-export const getUSServerActiveServer = functions.https.onRequest(async (request, response) => {
-    try {    
-        const activeserverSnapshot = await admin.firestore().doc('servers-list/activeservers').get()
-        const activeservers = activeserverSnapshot.data().servers
-        const activeserversarray = []
-        for (const server in activeservers) {
-            const p = admin.firestore().doc(`servers/${server}`).get()
-            activeserversarray.push(p)
-        }
-        const serverSnapshots = await Promise.all(activeserversarray)
-        const results = []
-        serverSnapshots.forEach(serverSnap => {
-            const data = serverSnap.data()
-            data.server = serverSnap.id
-            results.push(data)
-        })
-        response.send(results)
-    }
-    catch(error) {
+// export const getUSServerActiveServer = functions.https.onRequest(async (request, response) => {
+//     try {    
+//         const activeserverSnapshot = await admin.firestore().doc('servers-list/activeservers').get()
+//         const activeservers = activeserverSnapshot.data().servers
+        // const activeserversarray = []
+//         for (const server in activeservers) {
+            // const p = admin.firestore().doc(`servers/${server}`).get()
+//             activeserversarray.push(p)
+//         }
+        // const serverSnapshots = await Promise.all(activeserversarray)
+//         const results = []
+        // serverSnapshots.forEach(serverSnap => {
+            // const data = serverSnap.data()
+            // data.server = serverSnap.id
+//             results.push(data)
+//         })
+//         response.send(results)
+//     }
+//     catch(error) {
+//         console.log(error)
+//         response.status(500).send(error)
+//     }
+// })
+
+export const searchwallfy = functions.https.onRequest(async (req, res) => {
+    try {
+        const wallfy = await fire.collection('wallfy').get();
+        const wallfydocs = wallfy.docs;
+        const results = [];
+        wallfydocs.forEach(
+            wallSnap => {
+                const data = wallSnap.data()
+                if (data['url'].search(/Food/gi) !== -1) {
+                    results.push(data)
+                }
+            }
+        )
+        res.send(results)
+    } catch (error) {
         console.log(error)
-        response.status(500).send(error)
+        res.status(500).send(error)
     }
 })
 
@@ -108,15 +131,15 @@ export const getUSServerActiveServer = functions.https.onRequest(async (request,
 // });
 
 /* Using of Async, Await in the function */
-export const getUSServer = functions.https.onRequest(async (request, response) => {
-    try {
-        const snapshot = await admin.firestore().doc('servers/US').get()
-        const data = snapshot.data()
-        response.send(data)
-    }
-    catch (error) {
-        // Handle the error
-        console.log(error)
-        response.status(500).send(error)
-    }
-})
+// export const getUSServer = functions.https.onRequest(async (request, response) => {
+//     try {
+//         const snapshot = await admin.firestore().doc('servers/US').get()
+//         const data = snapshot.data()
+//         response.send(data)
+//     }
+//     catch (error) {
+//         // Handle the error
+//         console.log(error)
+//         response.status(500).send(error)
+//     }
+// })
